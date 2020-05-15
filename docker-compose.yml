@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db:
+    hostname: mysql
+    image: mysql:5.7
+    env_file:
+      - .env
+    volumes:
+      - ./data/mysql/data:/var/lib/mysql
+      - ./data/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  guacd:
+    image: guacamole/guacd
+    hostname: guacd
+    env_file:
+      - .env
+    depends_on:
+      - db
+  client:
+    image: ${GUACAMOLE_CLIENT_IMAGE}
+    hostname: guacamole
+    volumes:
+      - ./data/guacamole_home:/guacamole_home
+    env_file:
+      - .env
+    environment:
+      - GUACAMOLE_HOME=/guacamole_home
+      - GUACD_HOSTNAME=guacd
+      - MYSQL_HOSTNAME=db
+      - TOTP_ENABLED=true
+    ports:
+      - "${PUBLIC_PORT}:8080"
+    depends_on:
+      - db
+      - guacd
+    links:
+      - guacd
+
