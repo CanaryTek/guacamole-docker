@@ -1,5 +1,7 @@
 # Guacamole on docker-compose
 
+This work was inspired by @s4ur0n's excelent [GuacaVPN tutorial](https://cs3group.com/media/guacaVPN.pdf) (basically I'm too lazy to follow his tutorial ;)
+
 **IMPORTANT:** 
 
 This configuration does not use the docker image published by the guacamole project because it's not up to date and does not include the TOTP plugin.
