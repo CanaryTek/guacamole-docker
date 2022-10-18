@@ -35,6 +35,11 @@ sh prepare_db.sh
 docker-compose up
 ```
 
+## Connect
+
+  * Connect to http://<IP>:8080/guacamole with default user (guacadmin/guacadmin)
+  * In first login you wil be requested to setup TOTP
+
 ## Build you own image
 
 Follow these steps to build your own guacamole-client image from guacamole project's upstream repository
